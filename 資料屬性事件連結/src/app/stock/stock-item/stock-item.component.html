@@ -1,0 +1,13 @@
+<div class="stock-container">
+  <h2 class="name">{{ stock.name }}({{ stock.code }})</h2>
+  <p class="market">{{ stock.market }}</p>
+  <p [class]="stock.priceIncrease() ? 'positive' : 'negative'">
+    $ {{ stock.price }}
+  </p>
+  <!-- <button (click)="onToggleFavorite($event)" *ngIf="!stock.favorite">
+    加入最愛
+  </button> -->
+  <button (click)="onToggleFavorite($event)" [disabled]="stock.favorite">
+    加入最愛
+  </button>
+</div>
