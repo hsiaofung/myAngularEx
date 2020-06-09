@@ -1,0 +1,101 @@
+<!-- ngFor 寫法 -->
+<!-- even 項目索引是雙數時為true -->
+<div
+  class="stock-container"
+  [class.even-item]="isEven"
+  *ngFor="let stock of stocks; even as isEven; index as i"
+>
+  <h2 class="name">{{ stock.name }}({{ stock.code }})</h2>
+  <p class="market">{{ stock.market }}</p>
+
+  <!-- class 寫法 -->
+  <p class="price" [class]="stock.isPositiveChange() ? 'positive' : 'negative'">
+    $ {{ stock.price }}
+  </p>
+
+  <!-- ngClass 寫法 -->
+  <p class="price" [ngClass]="stockClasses">$ {{ stock.price }}</p>
+
+  <!-- ngStyle 寫法 -->
+  <p class="price" [ngStyle]="stockStyles">$ {{ stock.price }}</p>
+
+  <!-- [class.class-name] 寫法 -->
+  <p
+    class="price"
+    [class.positive]="stock.isPositiveChange()"
+    [class.negative]="!stock.isPositiveChange()"
+  ></p>
+
+  <!-- [style.style-name] 寫法 -->
+  <p
+    class="price"
+    [style.background]="stock.isPositiveChange() ? 'green' : 'red'"
+  >
+    $ {{ stock.price }}
+  </p>
+
+  <!-- ngIf -->
+  <button (click)="stock.toggleFavorite($event, i)" *ngIf="!stock.favorite">
+    加到我的最愛
+  </button>
+</div>
+
+<!-- 使用trackBy : 使用股票代碼作為識別，Angular 會以股票代碼判斷是否重複使用DOM中存在的元素。 -->
+<!-- 這確保從伺服器重新載入所有股票(會因此改變所有物件參考)時，Angular還是會以股票代碼判斷是否重複使用DOM中存在的元素 -->
+<div
+  class="stock-container"
+  [class.even-item]="isEven"
+  *ngFor="
+    let stock of stocks;
+    even as isEven;
+    index as i;
+    trackBy: trackStockByCode
+  "
+>
+  <h2 class="name">{{ stock.name }}({{ stock.code }})</h2>
+  <p class="market">{{ stock.market }}</p>
+
+  <!-- class 寫法 -->
+  <p class="price" [class]="stock.isPositiveChange() ? 'positive' : 'negative'">
+    $ {{ stock.price }}
+  </p>
+
+  <!-- ngClass 寫法 -->
+  <p class="price" [ngClass]="stockClasses">$ {{ stock.price }}</p>
+
+  <!-- ngStyle 寫法 -->
+  <p class="price" [ngStyle]="stockStyles">$ {{ stock.price }}</p>
+
+  <!-- [class.class-name] 寫法 -->
+  <p
+    class="price"
+    [class.positive]="stock.isPositiveChange()"
+    [class.negative]="!stock.isPositiveChange()"
+  ></p>
+
+  <!-- [style.style-name] 寫法 -->
+  <p
+    class="price"
+    [style.background]="stock.isPositiveChange() ? 'green' : 'red'"
+  >
+    $ {{ stock.price }}
+  </p>
+
+  <button (click)="toggleFavorite($event, i)" *ngIf="!stock.favorite">
+    加到我的最愛
+  </button>
+</div>
+
+<!-- <div [ngSwitch]="security.type">
+  <app-stock-item *ngSwitchCase="'stock'" [item]="security"></app-stock-item>
+  <app-stock-item *ngSwitchCase="'option'" [item]="security"></app-stock-item>
+  <app-stock-item
+    *ngSwitchCase="'derivative'"
+    [item]="security"
+  ></app-stock-item>
+  <app-stock-item
+    *ngSwitchCase="'mutual-fund'"
+    [item]="security"
+  ></app-stock-item>
+  <unknow-item *ngSwitchDefault [item]="security"></unknow-item>
+</div> -->
