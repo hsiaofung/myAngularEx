@@ -3,15 +3,21 @@ export class Stock {
   constructor(
     public name,
     public code,
-    public price,
     public market,
+    public price,
     public previousPrice
   ) {}
-  toggleFavorite(event) {
-    this.favorite = !this.favorite;
-    console.log(event);
-  }
-  isPositiveChange(): boolean {
+
+  isPositiveChange() {
     return this.price > this.previousPrice;
+  }
+
+  isLargeChange() {
+    let diff = this.price / this.previousPrice - 1;
+    return Math.abs(diff) > 0.01;
+  }
+
+  toggleFavorite() {
+    return (this.favorite = !this.favorite);
   }
 }
