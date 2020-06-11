@@ -1,0 +1,26 @@
+<!-- ngFor -->
+<!-- even -->
+<div class="stock-container" [class.even-item]="isEven" [class.odd-item]="isOdd"
+  *ngFor="let stock of stocks; index as i; trackBy:trackStockByCode; even as isEven; odd as isOdd">
+  <h2 class="name">{{stock.name}}({{stock.code}})</h2>
+  <p class="market">{{stock.market}}</p>
+
+  <!-- [class] -->
+  <p class="price" [class]="stock.isPositiveChange()?'positive':'negative'">$ {{stock.price}}</p>
+
+  <!-- [class.class-name] -->
+  <p class="price" [class.positive]="stock.isPositiveChange()" [class.negative]="!stock.isPositiveChange()">$
+    {{stock.price}}</p>
+
+  <!-- [style.style-name] -->
+  <p class="price" [style.background]="stock.isPositiveChange()? 'green':'red'">$ {{stock.price}}</p>
+
+  <!-- ngClass -->
+  <p class="price" [ngClass]="getStockClasses(i)">$ {{stock.price}}</p>
+
+  <!-- ngStyle -->
+  <p class="price" [ngStyle]="getStockStyles(i)">$ {{stock.price}}</p>
+
+  <!-- ngIF -->
+  <button (click)="onToggleFavorite($event, i)" *ngIf="!stock.favorite">加到我的最愛</button>
+</div>
