@@ -32,6 +32,8 @@ describe('Stock Item Component', () => {
 
   it('should trigger event emitter on add to favorite', () => {
     let selectedStock: Stock;
+
+    // 註冊事件處理器，當事件發出，會執行處理器。
     component.toggleFavorite.subscribe(
       (stock: Stock) => (selectedStock = stock)
     );
