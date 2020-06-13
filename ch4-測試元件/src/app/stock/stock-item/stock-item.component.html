@@ -3,7 +3,7 @@
   <p class="market">{{ stock.market }}</p>
   <p class="price" [ngClass]="getStockClasses()">$ {{ stock.price }}</p>
   <ng-content></ng-content>
-  <button (click)="onToggleFavorite()" *ngIf="!stock.favorite">
+  <button class="favorite" (click)="onToggleFavorite()" *ngIf="!stock.favorite">
     新增到我的最愛
   </button>
   <button (click)="changeStockPrice()">

@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
   }
 
   onToggleFavorite(event) {
+    console.log('AAAA', this.stock.favorite);
     this.stock.favorite = !this.stock.favorite;
   }
 
