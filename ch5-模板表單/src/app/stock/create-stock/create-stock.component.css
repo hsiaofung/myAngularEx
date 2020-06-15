@@ -1,0 +1,17 @@
+/* 股票名稱有效時: 綠色 */
+.stock-name .ng-valid,
+/* 股票代碼沒有被修改: 綠色 */
+.stock-code .ng-pristine,
+/* 股票價格沒有被拜訪 : 綠色 */
+.stock-price .ng-untouched {
+  background-color: green;
+}
+
+/* 股票名稱無效時: 粉紅色 */
+.stock-name .ng-invalid,
+/* 股票代碼被修改: 粉紅色 */
+.stock-code .ng-dirty,
+/* 股票價格被拜訪(輸入時仍為綠色，離開後才改變) : 粉紅色 */
+.stock-price .ng-touched {
+  background-color: pink;
+}
