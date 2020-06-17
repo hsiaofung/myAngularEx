@@ -1,0 +1,87 @@
+<!-- 要記得用ngSubmit -->
+<div class="form-group">
+  <form (ngSubmit)="createStock(stockForm)" #stockForm="ngForm">
+    <div class="stock-name">
+      <input
+        type="text"
+        name="stockName"
+        required
+        placeholder="Stock Name"
+        #stockName="ngModel"
+        [(ngModel)]="stock.name"
+      />
+    </div>
+    <div *ngIf="stockName.errors && stockName.errors.required">
+      Stock Name 要填寫
+    </div>
+    <div class="stock-code">
+      <input
+        type="text"
+        name="stockCode"
+        placeholder="Stock Code"
+        required
+        minlength="2"
+        #stockCode="ngModel"
+        [(ngModel)]="stock.code"
+      />
+    </div>
+    <div *ngIf="stockCode.dirty && stockCode.invalid">
+      <div *ngIf="stockCode.errors.required">
+        Stock code 需要填寫
+      </div>
+      <div *ngIf="stockCode.errors.minlength">
+        Stock code 最小需要長度2
+      </div>
+    </div>
+    <div class="stock-price">
+      <input
+        type="number"
+        name="stockPrice"
+        required
+        #stockPrice="ngModel"
+        [(ngModel)]="stock.price"
+      />
+    </div>
+    <div *ngIf="stockPrice.touched && stockPrice.invalid">
+      <div *ngIf="stockPrice.errors.required">stock price 需要填寫</div>
+    </div>
+    <div>
+      <input
+        type="radio"
+        name="stockMarket"
+        [(ngModel)]="stock.market"
+        value="NASDAQ"
+      />NASDAQ
+      <input
+        type="radio"
+        name="stockMarket"
+        [(ngModel)]="stock.market"
+        value="NYPD"
+      />NYPD
+      <input
+        type="radio"
+        name="stockMarket"
+        [(ngModel)]="stock.market"
+        value="YAM"
+      />YAM
+    </div>
+    <div>
+      <select name="stockMarket" [(ngModel)]="stock.market">
+        <!-- 要記得用ngValue -->
+        <option *ngFor="let option of options; index as i" [ngValue]="option">{{
+          option
+        }}</option>
+      </select>
+    </div>
+    <div>
+      <input
+        type="checkbox"
+        name="confirmed"
+        [ngModel]="confirmed"
+        (ngModelChange)="onConfirm()"
+      />I have confirmed above informaiton.
+    </div>
+    <button type="submit" [disabled]="!confirmed">提交</button>
+    <h4>{{ stock | json }}</h4>
+  </form>
+</div>
