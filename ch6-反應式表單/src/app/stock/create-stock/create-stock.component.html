@@ -1,0 +1,35 @@
+<div class="form-group">
+  <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
+    <div class="stock-name">
+      <input
+        type="text"
+        name="stockName"
+        required
+        placeholder="Stock Name"
+        formControlName="name"
+      />
+    </div>
+    <div class="stock-code">
+      <input
+        type="text"
+        name="stockCode"
+        required
+        placeholder="Stock Code"
+        formControlName="code"
+      />
+    </div>
+    <div class="stock-price">
+      <input
+        type="number"
+        name="stockPrice"
+        required
+        placeholder="Stock Code"
+        formControlName="price"
+      />
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+<p>Form Control value : {{ stockForm.value | json }}</p>
+<p>Form Control status : {{ stockForm.status | json }}</p>

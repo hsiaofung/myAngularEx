@@ -1,0 +1,20 @@
+.stock-container {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  display: inline-block;
+}
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.large-change {
+  font-size: 1.2em;
+}
+.small-change {
+  font-size: 0.8em;
+}
