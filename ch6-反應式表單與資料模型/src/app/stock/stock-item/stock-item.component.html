@@ -1,0 +1,9 @@
+<div class="stock-container" *ngFor="let stock of stocks; index as i">
+  <h2 class="name">{{ stock.name }}</h2>
+  <p class="code">{{ stock.code }}</p>
+  <p class="market">{{ stock.market }}</p>
+  <p class="price" [ngClass]="getStockClasses(i)">$ {{ stock.price }}</p>
+  <button (click)="onToggleFavorite(i)" *ngIf="!stock.favorite">
+    加到最愛
+  </button>
+</div>
