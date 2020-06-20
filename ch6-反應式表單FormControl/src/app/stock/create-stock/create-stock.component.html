@@ -1,0 +1,13 @@
+<p>create-stock works!</p>
+<input
+  type="text"
+  name="stockName"
+  placeholder="Stock Name"
+  required
+  [formControl]="nameControl"
+/>
+
+<button (click)="submit()">提交</button>
+
+<div>{{ nameControl.value | json }}</div>
+<div>{{ nameControl.status | json }}</div>
