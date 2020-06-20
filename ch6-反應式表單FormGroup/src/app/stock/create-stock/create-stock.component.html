@@ -1,0 +1,28 @@
+<p>create-stock works!</p>
+<form [formGroup]="stockForm" (ngSubmit)="submit()">
+  <div class="stock-name">
+    <input
+      type="text"
+      name="stockName"
+      placeholder="Stock Name"
+      required
+      formControlName="name"
+    />
+  </div>
+  <div class="stock-code">
+    <input
+      type="text"
+      name="stockCode"
+      placeholder="Stock Code"
+      required
+      formControlName="code"
+    />
+  </div>
+  <div class="stock-price">
+    <input type="number" name="stockPrice" required formControlName="price" />
+  </div>
+  <button type="submit">submit</button>
+</form>
+
+<p>{{ stockForm.value | json }}</p>
+<p>{{ stockForm.status | json }}</p>
