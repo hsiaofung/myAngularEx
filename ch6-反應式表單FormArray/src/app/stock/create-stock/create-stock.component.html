@@ -1,0 +1,58 @@
+<p>create-stock works!</p>
+<form [formGroup]="stockForm" (ngSubmit)="submit()">
+  <div class="stock-name">
+    <input
+      type="text"
+      name="stockName"
+      placeholder="stock name"
+      formControlName="name"
+    />
+    <div *ngIf="name.invalid && (name.dirty || name.touched)">
+      <div *ngIf="name.errors.required">Name is required</div>
+    </div>
+  </div>
+  <div class="stock-code">
+    <input
+      type="text"
+      name="stockCode"
+      placeholder="stock code"
+      formControlName="code"
+    />
+  </div>
+  <div class="stock-price">
+    <input
+      type="number"
+      name="stockPrice"
+      placeholder="stock price"
+      formControlName="price"
+    />
+  </div>
+
+  <div formArrayName="notablePeople">
+    <div
+      *ngFor="let person of notablePeople.controls; let i = index"
+      [formGroupName]="i"
+      class="notable-people"
+    >
+      <div>Person{{ i + 1 }}</div>
+      <div>
+        <input type="text" placeholder="Person Name" formControlName="name" />
+      </div>
+      <div>
+        <input type="text" placeholder="Person Title" formControlName="title" />
+      </div>
+
+      <button type="button" (click)="removeNotablePerson(i)">
+        Remove Person
+      </button>
+    </div>
+  </div>
+  <button type="button" (click)="addNotablePerson()">Add Notable Person</button>
+  <button type="submit">submit</button>
+  <button type="button" (click)="resetForm()">reset</button>
+  <button type="button" (click)="loadStockFromServer()">load</button>
+  <button type="button" (click)="patchStockForm()">pacth</button>
+</form>
+<p>Form Control value : {{ stockForm.value | json }}</p>
+<p>Form Control Status : {{ stockForm.status | json }}</p>
+<p>Stock Value : {{ stock | json }}</p>
