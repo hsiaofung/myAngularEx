@@ -1,0 +1,67 @@
+<p>stock-create works!</p>
+<form [formGroup]="stockForm" (ngSubmit)="submit()">
+  <div class="stock-name">
+    <input
+      type="text"
+      name="stockName"
+      placeholder="stock name"
+      formControlName="name"
+    />
+    <div *ngIf="name.invalid && (name.dirty || name.touched)">
+      <div *ngIf="name.errors.required">name is required</div>
+    </div>
+  </div>
+  <div class="stock-code">
+    <input
+      type="text"
+      name="stockCode"
+      placeholder="stock code"
+      formControlName="code"
+    />
+    <div *ngIf="code.invalid && (code.dirty || code.touched)">
+      <div *ngIf="code.errors.required">code is required</div>
+      <div *ngIf="code.errors.minlength">code is required 2 charaters</div>
+    </div>
+  </div>
+  <div class="stock-price">
+    <input type="number" name="stockPrice" formControlName="price" />
+    <div *ngIf="price.invalid && (price.dirty || price.touched)">
+      <div *ngIf="price.errors.required">price is required</div>
+      <div *ngIf="price.errors.min">price is required positive</div>
+    </div>
+  </div>
+  <div *ngIf="message">{{ message }}</div>
+  <div formArrayName="notablePeople">
+    <div
+      *ngFor="let person of notablePeople.controls; let i = index"
+      [formGroupName]="i"
+      class="notable-people"
+    >
+      <div>Person {{ i + 1 }}</div>
+      <div class="person-name">
+        <input
+          type="text"
+          name="personName"
+          placeholder="person name"
+          formControlName="name"
+        />
+      </div>
+      <div class="person-title">
+        <input
+          type="text"
+          name="personTitle"
+          placeholder="person title"
+          formControlName="title"
+        />
+      </div>
+      <button type="button" (click)="removePerson(i)">remove person</button>
+    </div>
+  </div>
+  <button type="submit">Submit</button>
+  <button type="button" (click)="loadStockFromServer()">load</button>
+  <button type="button" (click)="resetStockForm()">reset</button>
+  <button type="button" (click)="patchStockForm()">patch</button>
+</form>
+<div>{{ stockForm.value | json }}</div>
+<div>{{ stockForm.status | json }}</div>
+<button type="button" (click)="addPerson()">add person</button>
