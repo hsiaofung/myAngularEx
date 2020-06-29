@@ -1,0 +1,17 @@
+<div class="stock-container">
+  <div class="name">{{ stock.name }}({{ stock.code }})</div>
+  <div
+    [class.positive]="stock.price > stock.previousPrice"
+    [class.negative]="stock.price <= stock.previousPrice"
+    class="price"
+  >
+    {{ stock.price }}
+  </div>
+  <div class="exchange">{{ stock.exchange }}</div>
+  <button *ngIf="!stock.favorite" (click)="onToggleFavorite($event)">
+    Add To Favorite
+  </button>
+  <button *ngIf="stock.favorite" (click)="onToggleFavorite($event)">
+    remove From Favorite
+  </button>
+</div>
