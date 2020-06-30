@@ -1,0 +1,16 @@
+<h3>Product Search</h3>
+<div>
+  <input
+    type="text"
+    name="searchBox"
+    placeholder="search products"
+    [(ngModel)]="searchTerm"
+    (keyup)="search()"
+  />
+</div>
+<h3>Product List</h3>
+<app-product-item
+  *ngFor="let product of products$ | async"
+  [product]="product"
+  (quantityChange)="onQuantityChange($event)"
+></app-product-item>
