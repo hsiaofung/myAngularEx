@@ -1,0 +1,38 @@
+<form (ngSubmit)="login()">
+  <div class="user-name">
+    <input
+      type="text"
+      name="username"
+      placeholder="user name"
+      [(ngModel)]="user.name"
+      #usernameField="ngModel"
+      required
+    />
+    <div
+      *ngIf="
+        usernameField.invalid && (usernameField.dirty || usernameField.touched)
+      "
+    >
+      <div *ngIf="usernameField.errors.required">name is required</div>
+    </div>
+  </div>
+  <div class="password">
+    <input
+      type="text"
+      name="password"
+      placeholder="password"
+      [(ngModel)]="user.password"
+      #passwordField="ngModel"
+      required
+    />
+    <div
+      *ngIf="
+        passwordField.invalid && (passwordField.dirty || passwordField.touched)
+      "
+    >
+      <div *ngIf="passwordField.errors.required">password is required</div>
+    </div>
+  </div>
+  <button type="submit">Login</button>
+</form>
+<h3>{{ message }}</h3>
