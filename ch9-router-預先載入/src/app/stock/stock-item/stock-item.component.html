@@ -1,0 +1,11 @@
+<div class="stock-container" routerLink="/stock/{{ stock.code }}">
+  <h3 class="name">{{ stock.name }}({{ stock.code }})</h3>
+  <p class="exchange">{{ stock.exchange }}</p>
+  <p
+    class="price"
+    [class.positive]="stock.price > stock.previousPrice"
+    [class.negative]="stock.price <= stock.previousPrice"
+  >
+    ${{ stock.price }}
+  </p>
+</div>
