@@ -12,8 +12,8 @@ import { StockLoadResolverService } from './resolver/stock-load-resolver.service
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'user/login', pathMatch: 'full' },
-  { path: 'stock', loadChildren: 'app/stock/stock.module#StockModule' },
-  { path: 'user', loadChildren: 'app/user/user.module#UserModule' },
+  { path: 'stock', loadChildren: ()=> import ('./stock/stock.module').then((m)=>m.StockModule) },
+  { path: 'user', loadChildren: ()=> import ('./user/user.module').then((m)=>m.UserModule) },
   { path: '**', redirectTo: 'user/register' },
 ];
 
